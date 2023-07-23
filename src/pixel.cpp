@@ -1,6 +1,6 @@
 #include <iostream>
-#include "Pixel.h"
-#include "Sim.h"
+#include "header/Pixel.h"
+#include "header/Sim.h"
 
 const int Pixel::xBoarder = Sim::WIDTH / Sim::SCALE;
 const int Pixel::yBoarder = Sim::HEIGHT / Sim::SCALE;

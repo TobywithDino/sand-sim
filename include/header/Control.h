@@ -1,6 +1,6 @@
 #pragma once
-#include <SDL.h>
-#include "Pixel.h"
+#include <SDL2/SDL.h>
+#include "header/Pixel.h"
 
 class Control
 {

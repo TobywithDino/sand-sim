@@ -1,5 +1,5 @@
-#include "Control.h"
-#include "Sim.h"
+#include "header/Control.h"
+#include "header/Sim.h"
 #include <iostream>
 
 void Control::HandleEvent(SDL_Event& e, Pixel& pixel)

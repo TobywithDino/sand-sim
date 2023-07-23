@@ -1,7 +1,7 @@
 #include <iostream>
-#include "Sim.h"
-#include "Pixel.h"
-#include "Control.h"
+#include "header/Sim.h"
+#include "header/Pixel.h"
+#include "header/Control.h"
 
 const int Sim::SCALE = 8;
 const int Sim::WIDTH = 640;//640/16 = 40

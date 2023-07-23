@@ -1,7 +1,7 @@
 #pragma once
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include <vector>
-#include "Sim.h"
+#include "header/Sim.h"
 using std::vector;
 
 enum class PixelType {

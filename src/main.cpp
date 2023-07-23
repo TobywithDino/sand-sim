@@ -1,7 +1,8 @@
 #include <iostream>
+#include <cmath>
 #include <time.h>
-#include "Sim.h"
-#include "Pixel.h"
+#include "header/Sim.h"
+#include "header/Pixel.h"
 
 const int FPS = 60;
 const int frameTime = 1000 / FPS;
