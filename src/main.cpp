@@ -1,55 +1,31 @@
-#include <SDL2/SDL.h>
-#include <stdio.h>
+#include <iostream>
+#include <time.h>
+#include "Sim.h"
+#include "Pixel.h"
 
-#define SCREEN_WIDTH 640 
-#define SCREEN_HEIGHT 360
+const int FPS = 60;
+const int frameTime = 1000 / FPS;
+Uint32 currentTime;//milliseconds
+int shortFrameTime;
+int fpsCounter;
 
-static SDL_Window* window;
-static SDL_Renderer* renderer;
-int lastTick;
-bool running;
-void handleEvent();
-void update();
-void render();
-
-int main(int argc, char** argv){
-    SDL_Init(SDL_INIT_EVERYTHING);
-    window = SDL_CreateWindow("sand-sim", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-    lastTick = 0;
-    running = true;
-    while(running){
-        handleEvent();
-        if(SDL_GetTicks64() - lastTick > 1000/120){
-            update();
-            render();
-        }
-    }
-
-    return 0;
-}
-
-void handleEvent(){
-    SDL_Event event;
-    while(SDL_PollEvent(&event)){
-        switch(event.type){
-            case SDL_QUIT:
-                running = false;
-                break;
-
-            default:
-                break;
-        }
-    }
-}
-
-void update(){
-
-}
-
-void render(){
-    SDL_SetRenderDrawColor(renderer, 20, 20, 20, 255);
-    SDL_RenderClear(renderer);
-
-    SDL_RenderPresent(renderer);
+int main(int argc, char* args[]) {
+	srand(time(NULL));
+	Sim* simulator = new Sim();
+	simulator->init("Sand Simulator", false);
+	while (simulator->running()) {
+		currentTime = SDL_GetTicks();
+		simulator->handleEvent();
+		simulator->update();
+		simulator->render();
+		shortFrameTime = SDL_GetTicks() - currentTime;
+		if (frameTime > shortFrameTime) {
+			SDL_Delay(frameTime - shortFrameTime);
+		}
+		fpsCounter = SDL_GetTicks() - currentTime;
+		//std::cout << shortFrameTime << " " << frameTime - shortFrameTime << std::endl;
+		std::cout << round((float)1000/fpsCounter) << std::endl;
+	}
+	simulator->quit();
+	return 0;
 }
